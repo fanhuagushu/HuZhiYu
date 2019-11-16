@@ -89,6 +89,29 @@
         shade.style.display = 'none';
         big.style.display = 'none';
     }
+
+    // 遮罩跟随鼠标移动
+    let box = document.querySelector('.box');
+    small.onmousemove = function (event) {
+        // box.offsetLeft 盒子离上个定位元素的距离     shade.offsetWidth 遮罩自己的宽高
+        let mouseX = event.pageX // 鼠标位置
+        let mouseY = event.pageY;
+        let x = mouseX - box.offsetLeft - shade.offsetWidth / 2;
+        let y = mouseY - box.offsetTop - shade.offsetHeight / 2;
+        // 限制遮罩不能移出盒子
+        if (x <= 0) {
+            x = 0;
+        };
+        y = y <= 0 ? 0 : y;
+
+        if (x >= box.offsetWidth - shade.offsetWidth) {
+            x = box.offsetWidth - shade.offsetWidth
+        };
+        y = y >= box.offsetHeight - shade.offsetHeight ? box.offsetHeight - shade.offsetHeight : y;
+
+        shade.style.left = x + 'px';
+        shade.style.top = y + 'px';
+    }
 </script>
 
 </html>
