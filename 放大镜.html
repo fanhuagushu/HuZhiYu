@@ -68,4 +68,27 @@
     </div>
 </body>
 
+<script>
+    /*
+    放大镜的效果：
+    1.鼠标移入，遮罩和大图同时显示
+    2.鼠标移动，遮罩移动，大图也会移动
+    3.鼠标移出，遮罩和大图消失
+    */
+
+    // 鼠标移入，遮罩和大图显示  移出，遮罩和大图隐藏
+    let shade = document.querySelector('.mask');
+    let big = document.querySelector('.big');
+    let small = document.querySelector('.small');
+
+    small.onmouseover = function () {
+        shade.style.display = 'block';
+        big.style.display = 'block';
+    }
+    small.onmouseout = function () {
+        shade.style.display = 'none';
+        big.style.display = 'none';
+    }
+</script>
+
 </html>
