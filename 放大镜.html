@@ -92,6 +92,9 @@
 
     // 遮罩跟随鼠标移动
     let box = document.querySelector('.box');
+
+    let bigImg = document.querySelector('.big>img');
+
     small.onmousemove = function (event) {
         // box.offsetLeft 盒子离上个定位元素的距离     shade.offsetWidth 遮罩自己的宽高
         let mouseX = event.pageX // 鼠标位置
@@ -111,6 +114,15 @@
 
         shade.style.left = x + 'px';
         shade.style.top = y + 'px';
+
+        // 实现遮罩部分放大显示
+        // 大图的当前位置 = 遮罩的当前位置 * 大图的最大移动距离 / 遮罩的最大位移
+
+        let bigImgMaxX = bigImg.offsetWidth - big.offsetWidth;
+        let bigImgMaxY = bigImg.offsetHeight - big.offsetHeight;
+
+        bigImg.style.left = -1 * x * bigImgMaxX / (box.offsetWidth - shade.offsetWidth) + 'px';
+        bigImg.style.top = -1 * y * bigImgMaxY / (box.offsetHeight - shade.offsetHeight) + 'px';
     }
 </script>
 
